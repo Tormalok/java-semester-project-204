@@ -9,10 +9,16 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import io.github.cdimascio.dotenv.Dotenv;
 
 public class RouteFinder {
 
-    private static String mapboxApiKey = "pk.eyJ1IjoidG9ybWFsb2siLCJhIjoiY2x6bDh2YzUyMDA2bDJrcXd1OWtoZGduNiJ9.PC_dfeirD6xIzI_TOy4LtQ";
+    private static String mapboxApiKey;
+
+    static {
+        Dotenv dotenv = Dotenv.load();
+        mapboxApiKey = dotenv.get("MAPBOX_API_KEY");
+    }
 
     // List of coordinates of landmarks (latitude, longitude) and their names
     private static final List<Landmark> landmarks = new ArrayList<>();
